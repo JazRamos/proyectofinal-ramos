@@ -6,23 +6,28 @@ const CartView = () => {
 
     return (
         <>
-            <div>
-                <section>
-                    {cart.map((item) => (
-                        <div key={item.id} style={{ width: '50%', display: "flex" }}>
+            <div className="table table-striped">
+                
+                    
+                        {cart.map((item) => (
+                        <div className="col mb-3" key={item.id} style={{ width: '50%', display: "flex",   }}>
                             <h5>{item.name}</h5>
                             <p className="fs-6">Precio Unitario: ${item.price}</p>
                             <p className="fs-6">Cantidad: {item.quantity}</p>
-                            <p className="fs-6">Subtotal: ${item.subTotal}</p>
-                            <button onClick={() => removeProduct(item.id)}>Remover</button>
+                            <p className="fs-6">Subtotal: ${item.quantity * item.price}</p>
+                    
+                            <button className="btn btn-outline-danger mx-2" onClick={() => removeProduct(item.id)}>Remover</button>
+
+                            
+                            <section>
+                                <h5>Total ${total}</h5>
+                            </section>
                         </div>
                     ))}
-                </section>
-                <section>
-                    <h5>Total ${total}</h5>
-                </section>
+                
+                
                 <div><Link to='/checkout'>
-                    <button className="btn btn-outline-dark mx-2">Checkout</button></Link></div>
+                    <button className="btn btn-outline-success mx-2">Checkout</button></Link></div> 
             </div>
             
 

@@ -38,9 +38,18 @@ export const CartContextProvider = ({ children }) => {
     }; */
     const removeProduct = (item) => {
         const isItemInCart = cart.find((cartItem) => cartItem.id === item.id);
-        const productsFilter = cart.filter(product => product.id !== id);
-        setCart(productsFilter);
-    }
+if (isItemInCart.quantity === 1){
+        setCart(cartItems.filter(product => product.id !== id))
+} else{ 
+    setCart(cartItem.map((cartItem) =>
+    cartItem.id === item.id
+    ?{...cartItem, quantity: cartItem.quantity -1 }
+    :cartItem
+    ))
+}
+
+        const productsFilter = cartItems.filter(product => product.id !== id);
+        setCart(productsFilter);}
     const handleTotal = () => {
         const totalItems = cart.reduce((acum, item) => acum + item.subTotal, 0);
         setTotal(totalItems);
