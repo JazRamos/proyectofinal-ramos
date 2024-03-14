@@ -20,22 +20,7 @@ export const CartContextProvider = ({ children }) => {
             setCart([...cart, { ...item, quantity: 1 }]); 
         }
     };
-    /* const addProductCart = (item) => {
-        const isItemInCart = cart.findIndex((item) => item.id === product.id);
-        if (index == -1) {
-            const newProduct = {
-                ...product,
-                quantity,
-                subTotal: product.price * quantity,
-            };
-            setCart([...cart, newProduct]);
-        } else {
-            const cartCopy = [...cart];
-            cartCopy[index].quantity += quantity
-            cartCopy[index].subTotal = cartCopy[index].price * cartCopy[index].quantity;
-            setCart(cartCopy);
-        }
-    }; */
+   
     const removeProduct = (item) => {
         const isItemInCart = cart.find((cartItem) => cartItem.id === item.id);
 if (isItemInCart.quantity === 1){

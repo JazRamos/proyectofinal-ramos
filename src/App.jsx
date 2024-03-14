@@ -7,6 +7,7 @@ import CartView from "./Components/CartView/CartView";
 import { Checkout } from "./Components/Checkout/Checkout";
 
 
+
 export const App = () => {
   return (
     <BrowserRouter>
@@ -18,6 +19,7 @@ export const App = () => {
           <Route path="/item/:id" element={<ItemDetailContainer />} />
           <Route path='/cart' element={<CartView />} />
           <Route path='/checkout' element={<Checkout />} /> 
+          
         </Routes> 
       </CartContextProvider>
     </BrowserRouter>
