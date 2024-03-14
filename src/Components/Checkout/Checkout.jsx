@@ -55,6 +55,7 @@ export const Checkout = ({ children }) => {
 
         }  
         console.log(newOrder)
+        alert(`Gracias por su compra de: ${newOrder}`)
         addDoc(collection(db, "orders"), newOrder);
       
        
