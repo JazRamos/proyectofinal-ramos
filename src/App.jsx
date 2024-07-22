@@ -4,7 +4,7 @@ import { NavBar } from './Components/NavBar/NavBar';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { CartContextProvider } from "./Context/CartContext";
 import CartView from "./Components/CartView/CartView";
-import { Checkout } from "./Components/Checkout/Checkout";
+import Checkout from "./Components/Checkout/Checkout";
 
 
 
