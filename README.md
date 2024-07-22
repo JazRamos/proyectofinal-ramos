@@ -20,7 +20,7 @@ Para su construcción se utilizó:
 [Visual Studio Code]: <https://code.visualstudio.com/download>
 [Boostrap]: <https://getbootstrap.com/docs/5.2/getting-started/download/>
 
-#Navegabilidad
+# Navegabilidad
 Vista de la navegabilidad del e-commerce. [Video]
 
 [Video]:<https://drive.google.com/drive/folders/1GxL4IvFD5glq-lAV_UChRPEJnpZmm1BR?usp=sharing>
