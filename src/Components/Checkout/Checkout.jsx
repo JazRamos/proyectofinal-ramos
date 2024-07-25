@@ -1,6 +1,5 @@
-import { addDoc, collection, doc, getDoc, getDocs, query, updateDoc, where } from "firebase/firestore";
+import { addDoc, collection, getDocs, query, documentId, writeBatch, where } from "firebase/firestore";
 import { useState } from "react";
-import { CartContext } from "../../Context/CartContext";
 import { db } from "../../services/firebase/firebaseConfig";
 import { useCart } from "../../Context/CartContext";
 
@@ -9,7 +8,6 @@ const Checkout = () => {
     const [loading, setLoading] = useState(false)
     const [orderId, setOrderId] = useState(null)
     const { cart, total, clearCart } = useCart()
-   
 
     const createOrder = async () => {
         setLoading(true)
@@ -19,7 +17,7 @@ const Checkout = () => {
                     name: 'Jazmin',
                     email: 'jaz@hotmail.com',
                     phone: '92837012'
-                },//userData,
+                },
                 items: cart,
                 total
             }
@@ -30,14 +28,12 @@ const Checkout = () => {
             const ids = cart.map(prod => prod.id)
             const productsCollection = query(collection(db, 'products'), where(documentId(), 'in', ids))
 
-           
             const querySnapshot = await getDocs(productsCollection)
             const { docs } = querySnapshot
 
             docs.forEach(doc => {
                 const fields = doc.data()
                 const stockDb = fields.stock
-
                 const productsAddedToCart = cart.find(prod => prod.id === doc.id)
                 const prodQuantity = productsAddedToCart.quantity
                 console.log(stockDb >= prodQuantity)
@@ -50,18 +46,15 @@ const Checkout = () => {
 
             if (outOfStock.length === 0) {
                 batch.commit()
-
                 const orderCollection = collection(db, 'orders')
                 const { id } = await addDoc(orderCollection, objOrder)
-
                 setOrderId(id)
-
                 clearCart()
             } else {
                 alert('error', 'Hay productos que no tienen stock disponible')
             }
         } catch (error) {
-           alert('error', 'Hubo un error al crear la orden')
+            alert('error', 'Hubo un error al crear la orden')
         } finally {
             setLoading(false)
         }

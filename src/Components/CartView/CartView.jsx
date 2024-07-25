@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { useCart } from "../../Context/CartContext";
 import { Link } from "react-router-dom";
 const CartView = () => {
-    const { cart, total, removeProduct } = useCart();
+    const { cart, total, removeItem } = useCart();
 
     return (
         <>
@@ -16,7 +16,7 @@ const CartView = () => {
                             <p className="fs-6">Cantidad: {item.quantity}</p>
                             <p className="fs-6">Subtotal: ${item.quantity * item.price}</p>
                     
-                            <button className="btn btn-outline-danger mx-2" onClick={() => removeProduct(item.id)}>Remover</button>
+                                <button className="btn btn-outline-danger mx-2" onClick={() => removeItem(item.id)}>Remover</button>
 
                             
                             <section>
