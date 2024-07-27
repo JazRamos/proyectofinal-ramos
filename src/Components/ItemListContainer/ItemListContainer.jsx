@@ -5,6 +5,7 @@ import { db } from "../../services/firebase/firebaseConfig";
 import { getDocs, collection, query, where } from "firebase/firestore";
 
 
+
 export const ItemListContainer = ({ greeting }) => {
   const { category } = useParams()
   const [products, setProducts] = useState([])
@@ -32,7 +33,9 @@ export const ItemListContainer = ({ greeting }) => {
   }, [category])
 
   return (
-    <>
+    
+    <> 
+   
       <div> {greeting} </div>
       {isLoading ? <div className="fs-3 text-center p-3"> Cargando productos, gracias por la paciencia :)
         <div className="d-flex justify-content-center">

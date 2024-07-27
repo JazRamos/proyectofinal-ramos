@@ -3,7 +3,9 @@ import { Link } from "react-router-dom";
 
 
 export const NavBar = () => {
+
   return (
+    <> 
     <nav className="navbar navbar-expand-lg bg-light">
       <div className="container-fluid justify-content-center">
         <div className="nav" id="navbarNavAltMarkup">
@@ -27,9 +29,10 @@ export const NavBar = () => {
         </div>
       </div>
       <div className=" d-flex ">
-        <CartWidget />
-       
+          <CartWidget />
+   
       </div>
     </nav>
+    </>
   );
 };

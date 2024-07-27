@@ -23,9 +23,3 @@ export const CartWidget = () => {
         </div>
     )
 };
-{/* <button type="button" className="btn btn-outline-dark">
-    <FaShoppingCart size={22} />
-    {totalQuantity}
-    <CartView />
-    {totalQuantity}
-</button> */}

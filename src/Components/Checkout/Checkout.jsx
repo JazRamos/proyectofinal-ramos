@@ -2,6 +2,7 @@ import { addDoc, collection, getDocs, query, documentId, writeBatch, where } fro
 import { useState } from "react";
 import { db } from "../../services/firebase/firebaseConfig";
 import { useCart } from "../../Context/CartContext";
+import CheckoutOrder from "../CheckoutOrder/CheckoutOrder";
 
 
 const Checkout = () => {
@@ -9,14 +10,12 @@ const Checkout = () => {
     const [orderId, setOrderId] = useState(null)
     const { cart, total, clearCart } = useCart()
 
-    const createOrder = async () => {
+    const createOrder = async (name, phone, email) => {
         setLoading(true)
         try {
             const objOrder = {
                 buyer: {
-                    name: 'Jazmin',
-                    email: 'jaz@hotmail.com',
-                    phone: '92837012'
+                   name, phone, email
                 },
                 items: cart,
                 total
@@ -51,7 +50,7 @@ const Checkout = () => {
                 setOrderId(id)
                 clearCart()
             } else {
-                alert('error', 'Hay productos que no tienen stock disponible')
+                alert('error', 'Hay productos sin stock disponible')
             }
         } catch (error) {
             alert('error', 'Hubo un error al crear la orden')
@@ -66,13 +65,15 @@ const Checkout = () => {
     }
 
     if (orderId) {
-        return <h1>El id de su compra es: {orderId}</h1>
+        return <h1>Gracias por su compra! El nro de su compra es: {orderId} </h1>
+        
+
     }
 
     return (
         <>
-            <h1>CHECKOUT</h1>
-            <button onClick={createOrder}>Generar orden</button>
+            <p className= "text-center" ><h1>Checkout</h1></p>
+            <CheckoutOrder onConfirm={createOrder}/>
         </>
     )
 }
