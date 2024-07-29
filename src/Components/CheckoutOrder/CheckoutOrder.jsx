@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+
 const CheckoutOrder = ({ onConfirm }) => {
     const [name, setName] = useState('');
     const [phone, setPhone] = useState('');
@@ -52,4 +53,5 @@ const CheckoutOrder = ({ onConfirm }) => {
     </>
     )
 }
+
 export default CheckoutOrder

@@ -50,10 +50,10 @@ const Checkout = () => {
                 setOrderId(id)
                 clearCart()
             } else {
-                alert('error', 'Hay productos sin stock disponible')
+                alert('Hay productos sin stock disponible')
             }
         } catch (error) {
-            alert('error', 'Hubo un error al crear la orden')
+            alert( 'Hubo un error al crear la orden')
         } finally {
             setLoading(false)
         }
@@ -74,6 +74,7 @@ const Checkout = () => {
         <>
             <p className= "text-center" ><h1>Checkout</h1></p>
              <CheckoutOrder onConfirm={createOrder}/>
+            
         </>
     )
 }
