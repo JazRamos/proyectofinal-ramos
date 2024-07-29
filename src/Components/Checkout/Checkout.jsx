@@ -73,7 +73,7 @@ const Checkout = () => {
     return (
         <>
             <p className= "text-center" ><h1>Checkout</h1></p>
-            <CheckoutOrder onConfirm={createOrder}/>
+             <CheckoutOrder onConfirm={createOrder}/>
         </>
     )
 }

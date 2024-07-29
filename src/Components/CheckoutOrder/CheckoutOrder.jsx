@@ -15,41 +15,40 @@ const CheckoutOrder = ({ onConfirm }) => {
     }
 
     return (<>
-        <div className="container">
+        <div className="container-form">
+            <h2>Datos de compra </h2>
             <form onSubmit={handleConfirmation}>
                 <div className="mb-3">
-                    <label className="form-label">Nombre</label>
+
                     <input
                         type="text"
                         value={name}
-                        className="input"
                         placeholder="Nombre"
-                        onChange={( target ) => setName(target.value)}> </input>
+                        onChange={(event) => setName(event.target.value)} />
                 </div>
                 <div className="mb-3">
-                    <label className="form-label">Teléfono</label>
+
                     <input
                         type="text"
                         value={phone}
-                        className="input"
                         placeholder="Teléfono"
-                        onChange={( target ) => setPhone(target.value)}> </input>
+                        onChange={(event) => setPhone(event.target.value)} />
                 </div>
                 <div className="mb-3">
-                    <label  className="form-label">Email</label>
+
                     <input
                         type="text"
                         value={email}
-                        className="input"
                         placeholder="Email"
-                        onChange={( target ) => setEmail(target.value)}> </input>
-
+                        onChange={(event) => setEmail(event.target.value)} />
+                </div>
+                <div className="d-grid gap-2">
+                    <button type="submit" className="btn btn-outline-success align-center">Generar orden</button>
                 </div>
             </form>
-            <div className="d-grid gap-2">
-                <button type="submit" className="btn btn-outline-success align-center">Generar orden</button>
-            </div>
+
         </div>
+
     </>
     )
 }
