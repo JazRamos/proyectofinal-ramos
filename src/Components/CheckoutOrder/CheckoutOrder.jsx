@@ -1,15 +1,16 @@
 import { useState } from "react";
-
+import { useCart } from "../../Context/CartContext";
 
 const CheckoutOrder = ({ onConfirm }) => {
-    const [name, setName] = useState('');
+    const [nombre, setNombre] = useState('');
     const [phone, setPhone] = useState('');
     const [email, setEmail] = useState('');
+    const { cart } = useCart()
 
     const handleConfirmation = (event) => {
         event.preventdefault()
         const userData = {
-            name, phone, email
+            nombre, phone, email
         }
         onConfirm(userData);
 
@@ -19,13 +20,21 @@ const CheckoutOrder = ({ onConfirm }) => {
         <div className="container-form">
             <h2>Datos de compra </h2>
             <form onSubmit={handleConfirmation}>
-                <div className="mb-3">
 
+                {
+                    cart.map(item => (
+                        <div key={item.id}>
+                            <strong> {item.name} x {item.quantity} </strong>
+                            <strong> {item.price} </strong>
+                        </div>
+                    ))
+                }
+                <div className="mb-3">
                     <input
                         type="text"
-                        value={name}
+                        value={nombre}
                         placeholder="Nombre"
-                        onChange={(event) => setName(event.target.value)} />
+                        onChange={(event) => setNombre(event.target.value)} />
                 </div>
                 <div className="mb-3">
 

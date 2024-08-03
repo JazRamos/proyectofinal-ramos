@@ -10,12 +10,12 @@ const Checkout = () => {
     const [orderId, setOrderId] = useState(null)
     const { cart, total, clearCart } = useCart()
 
-    const createOrder = async (name, phone, email) => {
+    const createOrder = async (nombre, phone, email) => {
         setLoading(true)
         try {
             const objOrder = {
                 buyer: {
-                   name, phone, email
+                    nombre, phone, email
                 },
                 items: cart,
                 total
@@ -44,8 +44,8 @@ const Checkout = () => {
             })
 
             if (outOfStock.length === 0) {
-                batch.commit()
-                const orderCollection = collection(db, 'orders')
+                await batch.commit()
+                const orderCollection = collection(db, 'orders', createOrder)
                 const { id } = await addDoc(orderCollection, objOrder)
                 setOrderId(id)
                 clearCart()
@@ -53,7 +53,7 @@ const Checkout = () => {
                 alert('Hay productos sin stock disponible')
             }
         } catch (error) {
-            alert( 'Hubo un error al crear la orden')
+            alert('Hubo un error al crear la orden')
         } finally {
             setLoading(false)
         }
@@ -63,18 +63,20 @@ const Checkout = () => {
     if (loading) {
         return <h1>Se esta generando su orden, aguarde por favor...</h1>
     }
-
     if (orderId) {
         return <h1>Gracias por su compra! El nro de su compra es: {orderId} </h1>
-        
+
 
     }
 
     return (
         <>
-            <p className= "text-center" ><h1>Checkout</h1></p>
-             <CheckoutOrder onConfirm={createOrder}/>
-            
+            <div className="text-center" ><h1>Checkout</h1></div>
+            <CheckoutOrder onConfirm={createOrder} />
+
+
+
+
         </>
     )
 }
