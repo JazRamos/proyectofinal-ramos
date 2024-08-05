@@ -2,12 +2,14 @@ import { addDoc, collection, getDocs, query, documentId, writeBatch, where } fro
 import { useState } from "react";
 import { db } from "../../services/firebase/firebaseConfig";
 import { useCart } from "../../Context/CartContext";
-import CheckoutOrder from "../CheckoutOrder/CheckoutOrder";
 
 
-const Checkout = () => {
+const Checkout = ({onConfirm}) => {
     const [loading, setLoading] = useState(false)
     const [orderId, setOrderId] = useState(null)
+    const [nombre, setNombre] = useState('');
+    const [phone, setPhone] = useState('');
+    const [email, setEmail] = useState('');
     const { cart, total, clearCart } = useCart()
 
     const createOrder = async (nombre, phone, email) => {
@@ -68,11 +70,62 @@ const Checkout = () => {
 
 
     }
+    const handleConfirmation = (event) => {
+        event.preventdefault()
+        const userData = {
+            nombre, phone, email
+        };
+        onConfirm(userData);
+
+    }
+
+    
 
     return (
         <>
             <div className="text-center" ><h1>Checkout</h1></div>
-            <CheckoutOrder onConfirm={createOrder} />
+            <div className="container-form">
+                <h2>Datos de compra </h2>
+                <form onSubmit={handleConfirmation.orderId}>
+
+                    {
+                        cart.map(item => (
+                            <div key={item.id}>
+                                <strong> {item.name} x {item.quantity} </strong>
+                                <strong> {item.price} </strong>
+                            </div>
+                        ))
+                    }
+                    <div className="mb-3">
+                        <input
+                            type="text"
+                            value={nombre}
+                            placeholder="Nombre"
+                            onChange={(event) => setNombre(event.target.value)} />
+                    </div>
+                    <div className="mb-3">
+
+                        <input
+                            type="text"
+                            value={phone}
+                            placeholder="Teléfono"
+                            onChange={(event) => setPhone(event.target.value)} />
+                    </div>
+                    <div className="mb-3">
+
+                        <input
+                            type="text"
+                            value={email}
+                            placeholder="Email"
+                            onChange={(event) => setEmail(event.target.value)} />
+                    </div>
+                    <div className="d-grid gap-2">
+                        <button onClick={createOrder} type="submit" className="btn btn-outline-success align-center">Generar orden</button>
+                    </div>
+                </form>
+
+            </div>
+           
 
 
 

@@ -1,4 +1,4 @@
-import { useState } from "react";
+/* import { useState } from "react";
 import { useCart } from "../../Context/CartContext";
 
 const CheckoutOrder = ({ onConfirm }) => {
@@ -11,7 +11,8 @@ const CheckoutOrder = ({ onConfirm }) => {
         event.preventdefault()
         const userData = {
             nombre, phone, email
-        }
+        };
+         dispatch({ type: "SET_USER_DATA", payload: userData });
         onConfirm(userData);
 
     }
@@ -53,7 +54,7 @@ const CheckoutOrder = ({ onConfirm }) => {
                         onChange={(event) => setEmail(event.target.value)} />
                 </div>
                 <div className="d-grid gap-2">
-                    <button type="submit" className="btn btn-outline-success align-center">Generar orden</button>
+                    <button onClick={onConfirm} type="submit" className="btn btn-outline-success align-center">Generar orden</button>
                 </div>
             </form>
 
@@ -63,4 +64,4 @@ const CheckoutOrder = ({ onConfirm }) => {
     )
 }
 
-export default CheckoutOrder
+export default CheckoutOrder */

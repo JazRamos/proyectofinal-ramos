@@ -11,7 +11,7 @@ export const CartContext = createContext({
 
 export const CartProvider = ({ children }) => {
     const [cart, setCart] = useState([])
-    console.log(cart)
+  
 
     const addToCart = (productToAdd) => {
         if (!isInCart(productToAdd.id)) {
